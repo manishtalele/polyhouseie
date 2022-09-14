@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:polyhouseie/screens/homescreen.dart';
+import 'package:polyhouseie/screens/splash.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -17,6 +17,6 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const HomeScreen();
+    return const Splash();
   }
 }

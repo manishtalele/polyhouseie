@@ -20,10 +20,10 @@ class _SplashState extends State<Splash> {
           width: width / 2,
           height: width / 2,
           child: Image.asset(
-            'assets/image/splash.jpg',
+            'assets/image/splash.png',
             fit: BoxFit.cover,
           ),
-        ),
+      ),
         splashTransition: SplashTransition.fadeTransition,
         pageTransitionType: PageTransitionType.fade,
         nextScreen: const HomeScreen());
