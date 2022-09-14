@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:polyhouseie/widgets/dashboard.dart';
+import 'package:polyhouseie/widgets/weathercard.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -24,8 +26,18 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       )),
-      body: Column(
-        children: const [],
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          children: const [
+            Dashboard(
+                waterlevel: 1, soilmoisture: 2, roof1: true, roof2: false),
+            SizedBox(
+              height: 20,
+            ),
+            WeatherCard(),
+          ],
+        ),
       ),
     );
   }

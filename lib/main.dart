@@ -1,11 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:polyhouseie/Theme/deftheme.dart';
 import 'package:polyhouseie/screens/splash.dart';
 
 void main() {
   runApp(MaterialApp(
     title: 'Flutter Demo',
     theme: ThemeData(
-      primarySwatch: Colors.blue,
+      primaryColor: primaryColor,
+      primaryColorDark: primary2Color,
+      primarySwatch: Colors.green,
+
+
+      appBarTheme: const AppBarTheme(
+        backgroundColor: Colors.white, 
+        foregroundColor:  Colors.black,
+      )
     ),
     home: const MyApp(),
   ));
