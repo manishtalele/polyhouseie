@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:polyhouseie/widgets/controlcard.dart';
 import 'package:polyhouseie/widgets/dashboard.dart';
 import 'package:polyhouseie/widgets/weathercard.dart';
 
@@ -36,6 +37,11 @@ class _HomeScreenState extends State<HomeScreen> {
               height: 20,
             ),
             WeatherCard(),
+            SizedBox(
+              height: 20,
+            ),
+            ControlCard()
+            // ShowData()
           ],
         ),
       ),

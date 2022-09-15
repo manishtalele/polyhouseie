@@ -6,16 +6,13 @@ void main() {
   runApp(MaterialApp(
     title: 'Flutter Demo',
     theme: ThemeData(
-      primaryColor: primaryColor,
-      primaryColorDark: primary2Color,
-      primarySwatch: Colors.green,
-
-
-      appBarTheme: const AppBarTheme(
-        backgroundColor: Colors.white, 
-        foregroundColor:  Colors.black,
-      )
-    ),
+        primaryColor: primaryColor,
+        primaryColorDark: primary2Color,
+        primarySwatch: Colors.green,
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.white,
+          foregroundColor: Colors.black,
+        )),
     home: const MyApp(),
   ));
 }

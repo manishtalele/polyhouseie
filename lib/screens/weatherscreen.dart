@@ -30,12 +30,13 @@ class _WeatherScreenState extends State<WeatherScreen> {
         ),
         title: const Text("Weather Forecast"),
       ),
+      backgroundColor: const Color(0xFFF4F4F4),
       body: Column(
         children: [
           Center(
             child: loader
                 ? const Center(child: CircularProgressIndicator())
-                : Text("${forecasts.temperature}"),
+                : Text("${forecasts.weatherIcon}"),
           )
         ],
       ),
