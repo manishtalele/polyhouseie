@@ -51,6 +51,7 @@ class _WeatherCardState extends State<WeatherCard> {
                   padding: const EdgeInsets.all(20),
                   child: Row(
                     children: [
+                      Image.asset('assets/icon/sunny.png', height: 50,width: 50,),
                       Text(
                         "Today",
                         style: TextStyle(

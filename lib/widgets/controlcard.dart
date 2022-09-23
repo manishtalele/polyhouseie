@@ -25,7 +25,14 @@ class _ControlCardState extends State<ControlCard> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SvgPicture.asset(image),
+                  SvgPicture.asset(
+                    image,
+                    width: 60,
+                    height: 60,
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
                   Text(
                     name,
                     style: const TextStyle(
@@ -52,7 +59,12 @@ class _ControlCardState extends State<ControlCard> {
               onTap: () => Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => const ControlScreen())),
+                      builder: (context) => ControlScreen(
+                            pumpbtn1: true,
+                            pumpbtn2: false,
+                            roofbtn1: false,
+                            roofbtn2: true,
+                          ))),
               child: SvgPicture.asset("assets/icon/Back.svg"),
             ),
           ],

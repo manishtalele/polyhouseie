@@ -16,15 +16,25 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
           title: Row(
-        children: const [
-          // Image.asset("assets/icon/logo.png"),
-          SizedBox(
-            width: 20,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Row(
+            children: [
+              Image.asset(
+                "assets/icon/logo.png",
+                height: 60,
+                width: 60,
+              ),
+              const Text(
+                "Polyhouseie",
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
+              ),
+            ],
           ),
-          Text(
-            "Polyhouseie",
-            style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
-          ),
+          const Icon(
+            Icons.notifications_none_outlined,
+            color: Color.fromRGBO(75, 160, 100, 100),
+          )
         ],
       )),
       body: SingleChildScrollView(
@@ -32,7 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           children: const [
             Dashboard(
-                waterlevel: 1, soilmoisture: 2, roof1: true, roof2: false),
+                waterlevel: 0, soilmoisture: 2, roof1: true, roof2: false),
             SizedBox(
               height: 20,
             ),

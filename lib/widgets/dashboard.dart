@@ -16,7 +16,7 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
-  String waterlevel = "low", soilmoisture = "low";
+  String waterlevel = "Low", soilmoisture = "Low";
 
   @override
   void initState() {
@@ -30,7 +30,7 @@ class _DashboardState extends State<Dashboard> {
       });
     } else {
       setState(() {
-        waterlevel = "low";
+        waterlevel = "Low";
       });
     }
     if (widget.soilmoisture == 2) {
@@ -43,7 +43,7 @@ class _DashboardState extends State<Dashboard> {
       });
     } else {
       setState(() {
-        soilmoisture = "low";
+        soilmoisture = "Low";
       });
     }
     super.initState();
@@ -52,109 +52,111 @@ class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          "Dashboard",
-          style: TextStyle(
-              fontSize: 24, fontWeight: FontWeight.w600, color: primary2Color),
-        ),
-        const SizedBox(
-          height: 10,
-        ),
-        Center(
-          child: Container(
-            width: width - 40,
-            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-            decoration: BoxDecoration(
-                color: Colors.white, borderRadius: BorderRadius.circular(12)),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                RichText(
-                  text: TextSpan(
-                    text: 'Roof-1: ',
-                    style: const TextStyle(
-                        fontWeight: FontWeight.w500,
-                        fontSize: 24,
-                        color: Colors.black),
-                    children: <TextSpan>[
-                      TextSpan(
-                          text: widget.roof1 ? "Open" : "Close",
+    return Card(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            "Dashboard",
+            style: TextStyle(
+                fontSize: 24, fontWeight: FontWeight.w600, color: primary2Color),
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          Center(
+            child: Container(
+              width: width - 40,
+              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+              decoration: BoxDecoration(
+                  color: Colors.white, borderRadius: BorderRadius.circular(12)),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  RichText(
+                    text: TextSpan(
+                      text: 'Roof-1: ',
+                      style: const TextStyle(
+                          fontWeight: FontWeight.w400,
+                          fontSize: 24,
+                          color: Colors.black),
+                      children: <TextSpan>[
+                        TextSpan(
+                            text: widget.roof1 ? "Open" : "Close",
+                            style: TextStyle(
+                                fontWeight: FontWeight.w500,
+                                fontSize: 20,
+                                color: widget.roof1 ? Colors.green : Colors.red)),
+                      ],
+                    ),
+                  ),
+                  RichText(
+                    text: TextSpan(
+                      text: 'Roof-2: ',
+                      style: const TextStyle(
+                          fontWeight: FontWeight.w400,
+                          fontSize: 24,
+                          color: Colors.black),
+                      children: <TextSpan>[
+                        TextSpan(
+                            text: widget.roof2 ? "Open" : "Close",
+                            style: TextStyle(
+                                fontWeight: FontWeight.w500,
+                                fontSize: 20,
+                                color: widget.roof2 ? Colors.green : Colors.red)),
+                      ],
+                    ),
+                  ),
+                  RichText(
+                    text: TextSpan(
+                      text: 'Water Level: ',
+                      style: const TextStyle(
+                          fontWeight: FontWeight.w400,
+                          fontSize: 24,
+                          color: Colors.black),
+                      children: <TextSpan>[
+                        TextSpan(
+                          text: waterlevel,
                           style: TextStyle(
                               fontWeight: FontWeight.w500,
                               fontSize: 20,
-                              color: widget.roof1 ? Colors.green : Colors.red)),
-                    ],
+                              color: widget.waterlevel == 1
+                                  ? Colors.yellow
+                                  : widget.waterlevel == 2
+                                      ? Colors.green
+                                      : Colors.red),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-                RichText(
-                  text: TextSpan(
-                    text: 'Roof-2: ',
-                    style: const TextStyle(
-                        fontWeight: FontWeight.w500,
-                        fontSize: 24,
-                        color: Colors.black),
-                    children: <TextSpan>[
-                      TextSpan(
-                          text: widget.roof2 ? "Open" : "Close",
+                  RichText(
+                    text: TextSpan(
+                      text: 'Soil moisture: ',
+                      style: const TextStyle(
+                          fontWeight: FontWeight.w400,
+                          fontSize: 24,
+                          color: Colors.black),
+                      children: <TextSpan>[
+                        TextSpan(
+                          text: soilmoisture,
                           style: TextStyle(
                               fontWeight: FontWeight.w500,
                               fontSize: 20,
-                              color: widget.roof2 ? Colors.green : Colors.red)),
-                    ],
+                              color: widget.soilmoisture == 1
+                                  ? Colors.yellow
+                                  : widget.soilmoisture == 2
+                                      ? Colors.green
+                                      : Colors.red),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-                RichText(
-                  text: TextSpan(
-                    text: 'Water Level: ',
-                    style: const TextStyle(
-                        fontWeight: FontWeight.w500,
-                        fontSize: 24,
-                        color: Colors.black),
-                    children: <TextSpan>[
-                      TextSpan(
-                        text: waterlevel,
-                        style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            fontSize: 20,
-                            color: widget.waterlevel == 1
-                                ? Colors.yellow
-                                : widget.waterlevel == 2
-                                    ? Colors.green
-                                    : Colors.red),
-                      ),
-                    ],
-                  ),
-                ),
-                RichText(
-                  text: TextSpan(
-                    text: 'Soil moisture: ',
-                    style: const TextStyle(
-                        fontWeight: FontWeight.w500,
-                        fontSize: 24,
-                        color: Colors.black),
-                    children: <TextSpan>[
-                      TextSpan(
-                        text: soilmoisture,
-                        style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            fontSize: 20,
-                            color: widget.soilmoisture == 1
-                                ? Colors.yellow
-                                : widget.soilmoisture == 2
-                                    ? Colors.green
-                                    : Colors.red),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
