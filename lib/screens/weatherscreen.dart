@@ -7,7 +7,8 @@ import 'package:intl/intl.dart';
 bool loader = true;
 
 class WeatherScreen extends StatefulWidget {
-  const WeatherScreen({super.key});
+  final double  lat , lon ; 
+  const WeatherScreen({super.key, required this.lat, required this.lon});
 
   @override
   State<WeatherScreen> createState() => _WeatherScreenState();
@@ -20,7 +21,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
     queryForecast(
         setLoader: () => setState(() {
               loader = false;
-            }));
+            }), lat: widget.lat, lon: widget.lon);
     super.initState();
   }
 

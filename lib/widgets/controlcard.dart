@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:polyhouseie/Theme/deftheme.dart';
+import 'package:polyhouseie/api/updatedata.dart';
 import 'package:polyhouseie/screens/controlscreen.dart';
 
 class ControlCard extends StatefulWidget {
@@ -59,12 +60,7 @@ class _ControlCardState extends State<ControlCard> {
               onTap: () => Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => ControlScreen(
-                            pumpbtn1: true,
-                            pumpbtn2: false,
-                            roofbtn1: false,
-                            roofbtn2: true,
-                          ))),
+                      builder: (context) => const ControlScreen())),
               child: SvgPicture.asset("assets/icon/Back.svg"),
             ),
           ],
@@ -75,9 +71,21 @@ class _ControlCardState extends State<ControlCard> {
         Row(
           children: [
             const Spacer(),
-            controlBtn(image: 'assets/icon/roofing.svg', name: "Open Roof"),
+            InkWell(
+                onTap: () {
+                  updateRoof1();
+                  updateRoof2();
+                },
+                child: controlBtn(
+                    image: 'assets/icon/roofing.svg', name: "Open Roof")),
             const Spacer(),
-            controlBtn(image: "assets/icon/water.svg", name: "Put Water"),
+            InkWell(
+                onTap: () {
+                  updateWaterpump1();
+                  updateWaterpump2();
+                },
+                child: controlBtn(
+                    image: "assets/icon/water.svg", name: "Put Water")),
             const Spacer(),
           ],
         )

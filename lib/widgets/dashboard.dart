@@ -18,8 +18,7 @@ class Dashboard extends StatefulWidget {
 class _DashboardState extends State<Dashboard> {
   String waterlevel = "Low", soilmoisture = "Low";
 
-  @override
-  void initState() {
+  check() {
     if (widget.waterlevel == 2) {
       setState(() {
         waterlevel = "High";
@@ -46,11 +45,17 @@ class _DashboardState extends State<Dashboard> {
         soilmoisture = "Low";
       });
     }
+  }
+
+  @override
+  void initState() {
+    check();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    check();
     double width = MediaQuery.of(context).size.width;
     return Card(
       child: Column(
@@ -59,7 +64,9 @@ class _DashboardState extends State<Dashboard> {
           Text(
             "Dashboard",
             style: TextStyle(
-                fontSize: 24, fontWeight: FontWeight.w600, color: primary2Color),
+                fontSize: 24,
+                fontWeight: FontWeight.w600,
+                color: primary2Color),
           ),
           const SizedBox(
             height: 10,
@@ -86,7 +93,8 @@ class _DashboardState extends State<Dashboard> {
                             style: TextStyle(
                                 fontWeight: FontWeight.w500,
                                 fontSize: 20,
-                                color: widget.roof1 ? Colors.green : Colors.red)),
+                                color:
+                                    widget.roof1 ? Colors.green : Colors.red)),
                       ],
                     ),
                   ),
@@ -103,7 +111,8 @@ class _DashboardState extends State<Dashboard> {
                             style: TextStyle(
                                 fontWeight: FontWeight.w500,
                                 fontSize: 20,
-                                color: widget.roof2 ? Colors.green : Colors.red)),
+                                color:
+                                    widget.roof2 ? Colors.green : Colors.red)),
                       ],
                     ),
                   ),

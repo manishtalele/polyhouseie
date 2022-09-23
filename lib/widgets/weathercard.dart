@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:polyhouseie/Theme/deftheme.dart';
+import 'package:polyhouseie/api/location.dart';
 import 'package:polyhouseie/api/weatherapi.dart';
 import 'package:polyhouseie/screens/weatherscreen.dart';
 
@@ -12,18 +14,32 @@ class WeatherCard extends StatefulWidget {
 }
 
 class _WeatherCardState extends State<WeatherCard> {
+  late Position position;
+  double lat = 19.2094, lon = 73.0939;
+  bool loader = true;
+  Future getLocation() async {
+    position = await getGeoLocationPosition();
+    setState(() {
+      lat = position.latitude;
+      lon = position.longitude;
+    });
+  }
+
   @override
   void initState() {
+    getLocation();
     queryForecast(
         setLoader: () => setState(() {
               loader = false;
-            }));
+            }),
+        lat: lat,
+        lon: lon);
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
+    // double width = MediaQuery.of(context).size.width;
     return Column(
       children: [
         Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
@@ -36,8 +52,10 @@ class _WeatherCardState extends State<WeatherCard> {
           ),
           const Spacer(),
           InkWell(
-            onTap: () => Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const WeatherScreen())),
+            onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => WeatherScreen(lat: lat, lon: lon))),
             child: SvgPicture.asset("assets/icon/Back.svg"),
           )
         ]),
@@ -51,7 +69,11 @@ class _WeatherCardState extends State<WeatherCard> {
                   padding: const EdgeInsets.all(20),
                   child: Row(
                     children: [
-                      Image.asset('assets/icon/sunny.png', height: 50,width: 50,),
+                      Image.asset(
+                        'assets/icon/sunny.png',
+                        height: 50,
+                        width: 50,
+                      ),
                       Text(
                         "Today",
                         style: TextStyle(
