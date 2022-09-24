@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:polyhouseie/Theme/deftheme.dart';
 import 'package:polyhouseie/api/updatedata.dart';
 import 'package:polyhouseie/api/userid.dart';
+import 'package:polyhouseie/widgets/conroldashboard.dart';
 
 class ControlScreen extends StatefulWidget {
   const ControlScreen({
@@ -46,6 +47,22 @@ class _ControlScreenState extends State<ControlScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 30, vertical: 20),
+                        child: Text(
+                          "DashBoard",
+                          style: TextStyle(
+                              fontSize: 34,
+                              fontWeight: FontWeight.w500,
+                              color: primary2Color),
+                        ),
+                      ),
+                      ControlDashBoard(
+                          pump1: snapshot.data["waterpump-1"],
+                          pump2: snapshot.data["waterpump-2"],
+                          roof1: snapshot.data["roof-1"],
+                          roof2: snapshot.data["roof-2"]),
                       Padding(
                         padding: const EdgeInsets.symmetric(
                             horizontal: 30, vertical: 20),

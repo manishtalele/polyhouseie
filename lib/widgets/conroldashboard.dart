@@ -1,76 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:polyhouseie/Theme/deftheme.dart';
 
-class Dashboard extends StatefulWidget {
-  final int waterlevel, soilmoisture;
-  final bool roof1, roof2;
-  const Dashboard(
+class ControlDashBoard extends StatefulWidget {
+  final bool roof1, roof2, pump1, pump2;
+  const ControlDashBoard(
       {super.key,
-      required this.waterlevel,
-      required this.soilmoisture,
+      required this.pump1,
+      required this.pump2,
       required this.roof1,
       required this.roof2});
 
   @override
-  State<Dashboard> createState() => _DashboardState();
+  State<ControlDashBoard> createState() => _ControlDashBoardState();
 }
 
-class _DashboardState extends State<Dashboard> {
-  String waterlevel = "Low", soilmoisture = "Low";
-
-  check() {
-    if (widget.waterlevel == 2) {
-      setState(() {
-        waterlevel = "High";
-      });
-    } else if (widget.waterlevel == 1) {
-      setState(() {
-        waterlevel = "Medium";
-      });
-    } else {
-      setState(() {
-        waterlevel = "Low";
-      });
-    }
-    if (widget.soilmoisture == 2) {
-      setState(() {
-        soilmoisture = "High";
-      });
-    } else if (widget.soilmoisture == 1) {
-      setState(() {
-        soilmoisture = "Medium";
-      });
-    } else {
-      setState(() {
-        soilmoisture = "Low";
-      });
-    }
-  }
-
-  @override
-  void initState() {
-    check();
-    super.initState();
-  }
-
+class _ControlDashBoardState extends State<ControlDashBoard> {
   @override
   Widget build(BuildContext context) {
-    check();
     double width = MediaQuery.of(context).size.width;
     return Card(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            "Dashboard",
-            style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.w600,
-                color: primary2Color),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
           Center(
             child: Container(
               width: width - 40,
@@ -118,45 +69,37 @@ class _DashboardState extends State<Dashboard> {
                   ),
                   RichText(
                     text: TextSpan(
-                      text: 'Water Level: ',
+                      text: 'WaterPump-1: ',
                       style: const TextStyle(
                           fontWeight: FontWeight.w400,
                           fontSize: 24,
                           color: Colors.black),
                       children: <TextSpan>[
                         TextSpan(
-                          text: waterlevel,
-                          style: TextStyle(
-                              fontWeight: FontWeight.w500,
-                              fontSize: 20,
-                              color: widget.waterlevel == 1
-                                  ? Colors.yellow
-                                  : widget.waterlevel == 2
-                                      ? primaryColor
-                                      : Colors.red),
-                        ),
+                            text: widget.pump1 ? "ON" : "OFF",
+                            style: TextStyle(
+                                fontWeight: FontWeight.w500,
+                                fontSize: 20,
+                                color:
+                                    widget.pump1 ? primaryColor : Colors.red)),
                       ],
                     ),
                   ),
                   RichText(
                     text: TextSpan(
-                      text: 'Soil moisture: ',
+                      text: 'WaterPump-2: ',
                       style: const TextStyle(
                           fontWeight: FontWeight.w400,
                           fontSize: 24,
                           color: Colors.black),
                       children: <TextSpan>[
                         TextSpan(
-                          text: soilmoisture,
-                          style: TextStyle(
-                              fontWeight: FontWeight.w500,
-                              fontSize: 20,
-                              color: widget.soilmoisture == 1
-                                  ? Colors.yellow
-                                  : widget.soilmoisture == 2
-                                      ? primaryColor
-                                      : Colors.red),
-                        ),
+                            text: widget.pump2 ? "ON" : "OFF",
+                            style: TextStyle(
+                                fontWeight: FontWeight.w500,
+                                fontSize: 20,
+                                color:
+                                    widget.pump2 ? primaryColor : Colors.red)),
                       ],
                     ),
                   ),

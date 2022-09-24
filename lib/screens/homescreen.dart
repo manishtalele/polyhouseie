@@ -3,7 +3,6 @@ import 'package:polyhouseie/api/userid.dart';
 import 'package:polyhouseie/widgets/controlcard.dart';
 import 'package:polyhouseie/widgets/dashboard.dart';
 import 'package:polyhouseie/widgets/weathercard.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -13,8 +12,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  Stream userData =
-      FirebaseFirestore.instance.collection('polyhouse').doc(uid).snapshots();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
