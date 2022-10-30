@@ -1,79 +1,79 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:polyhouseie/api/userid.dart';
+import 'package:firebase_database/firebase_database.dart';
+import 'package:polyhouseie/api/getdata.dart';
 
 CollectionReference users = FirebaseFirestore.instance.collection('polyhouse');
 
 updateRoofs() async {
-  bool roof1Ref = false, roof2Ref = false;
-  await users.doc(uid).get().then((value) {
-    roof1Ref = value["roof-1"];
-    roof2Ref = value["roof-2"];
-  });
-  if (roof1Ref && roof2Ref) {
-    users
-        .doc(uid)
-        .update({'roof-2': !roof2Ref, "roof-1": !roof1Ref})
-        .then((value) => print("Data Updated"))
-        .catchError((error) => print("Failed to update user: $error"));
-  } else if (roof1Ref || roof2Ref) {
-    users
-        .doc(uid)
-        .update({'roof-2': true, "roof-1": true})
-        .then((value) => print("Data Updated"))
-        .catchError((error) => print("Failed to update user: $error"));
-  } else if (!roof1Ref && !roof2Ref) {
-    users
-        .doc(uid)
-        .update({'roof-2': true, "roof-1": true})
-        .then((value) => print("Data Updated"))
-        .catchError((error) => print("Failed to update user: $error"));
+  Map<String, Object?> updates = {};
+  if (controlData["Roof1"] && controlData["Roof2"]) {
+    updates["Control/Roof1"] = !controlData["Roof1"];
+    updates["Control/Roof2"] = !controlData["Roof2"];
+
+    return FirebaseDatabase.instance.ref().update(updates);
+  } else if (controlData["Roof2"] || controlData["Roof1"]) {
+    updates["Control/Roof1"] = true;
+    updates["Control/Roof2"] = true;
+
+    return FirebaseDatabase.instance.ref().update(updates);
+  } else if (!controlData["Roof1"] && !controlData["Roof2"]) {
+    updates["Control/Roof1"] = true;
+    updates["Control/Roof2"] = true;
+
+    return FirebaseDatabase.instance.ref().update(updates);
   } else {
-    users
-        .doc(uid)
-        .update({'roof-2': false, "roof-1": false})
-        .then((value) => print("Data Updated"))
-        .catchError((error) => print("Failed to update user: $error"));
+    updates["Control/Roof1"] = false;
+    updates["Control/Roof2"] = false;
+
+    return FirebaseDatabase.instance.ref().update(updates);
+  }
+}
+
+updatePumps() async {
+  Map<String, Object?> updates = {};
+  if (controlData["Waterpump1"] && controlData["Waterpump2"]) {
+    updates["Control/Waterpump1"] = !controlData["Waterpump1"];
+    updates["Control/Waterpump2"] = !controlData["Waterpump2"];
+
+    return FirebaseDatabase.instance.ref().update(updates);
+  } else if (controlData["Waterpump2"] || controlData["Waterpump1"]) {
+    updates["Control/Waterpump1"] = true;
+    updates["Control/Waterpump2"] = true;
+
+    return FirebaseDatabase.instance.ref().update(updates);
+  } else if (!controlData["Waterpump1"] && !controlData["Waterpump2"]) {
+    updates["Control/Waterpump1"] = true;
+    updates["Control/Waterpump2"] = true;
+
+    return FirebaseDatabase.instance.ref().update(updates);
+  } else {
+    updates["Control/Waterpump1"] = false;
+    updates["Control/Waterpump2"] = false;
+
+    return FirebaseDatabase.instance.ref().update(updates);
   }
 }
 
 Future<void> updateRoof1() async {
-  bool ref = false;
-  await users.doc(uid).get().then((value) => ref = value["roof-1"]);
-
-  return users
-      .doc(uid)
-      .update({'roof-1': !ref})
-      .then((value) => print("Data Updated"))
-      .catchError((error) => print("Failed to update user: $error"));
+  Map<String, Object?> updates = {};
+  updates["Control/Roof1"] = !controlData["Roof1"];
+  return FirebaseDatabase.instance.ref().update(updates);
 }
 
 Future<void> updateRoof2() async {
-  bool ref = false;
-  await users.doc(uid).get().then((value) => ref = value["roof-2"]);
-
-  return users
-      .doc(uid)
-      .update({'roof-2': !ref})
-      .then((value) => print("Data Updated"))
-      .catchError((error) => print("Failed to update user: $error"));
+  Map<String, Object?> updates = {};
+  updates["Control/Roof2"] = !controlData["Roof2"];
+  return FirebaseDatabase.instance.ref().update(updates);
 }
 
 Future<void> updateWaterpump1() async {
-  bool ref = false;
-  await users.doc(uid).get().then((value) => ref = value["waterpump-1"]);
-  return users
-      .doc(uid)
-      .update({'waterpump-1': !ref})
-      .then((value) => print("Data Updated"))
-      .catchError((error) => print("Failed to update user: $error"));
+  Map<String, Object?> updates = {};
+  updates["Control/Waterpump1"] = !controlData["Waterpump1"];
+  return FirebaseDatabase.instance.ref().update(updates);
 }
 
 Future<void> updateWaterpump2() async {
-  bool ref = false;
-  await users.doc(uid).get().then((value) => ref = value["waterpump-2"]);
-  return users
-      .doc(uid)
-      .update({'waterpump-2': !ref})
-      .then((value) => print("Data Updated"))
-      .catchError((error) => print("Failed to update user: $error"));
+  Map<String, Object?> updates = {};
+  updates["Control/Waterpump2"] = !controlData["Waterpump2"];
+  return FirebaseDatabase.instance.ref().update(updates);
 }

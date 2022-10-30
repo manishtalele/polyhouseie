@@ -2,11 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:polyhouseie/Theme/deftheme.dart';
 import 'package:polyhouseie/api/updatedata.dart';
-import 'package:polyhouseie/api/userid.dart';
 import 'package:polyhouseie/screens/controlscreen.dart';
 
 class ControlCard extends StatefulWidget {
-  const ControlCard({super.key});
+  final bool roof1, roof2, waterpump1, waterpump2;
+  const ControlCard(
+      {super.key,
+      required this.roof1,
+      required this.roof2,
+      required this.waterpump1,
+      required this.waterpump2});
 
   @override
   State<ControlCard> createState() => _ControlCardState();
@@ -55,65 +60,59 @@ class _ControlCardState extends State<ControlCard> {
             ),
           ),
         );
-    return StreamBuilder(
-        stream: userData,
-        builder: (BuildContext context, AsyncSnapshot snapshot) {
-          if (snapshot.hasError) {
-            return const Text("Something went wrong");
-          }
-          if (snapshot.hasData) {
-            return Column(
-              children: [
-                Row(
-                  children: [
-                    Text(
-                      "Controls",
-                      style: TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.w600,
-                          color: primary2Color),
-                    ),
-                    const Spacer(),
-                    InkWell(
-                      onTap: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const ControlScreen())),
-                      child: SvgPicture.asset("assets/icon/Back.svg"),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Row(
-                  children: [
-                    const Spacer(),
-                    InkWell(
-                        onTap: () => updateRoofs(),
-                        child: controlBtn(
-                            image: 'assets/icon/roofing.svg',
-                            name: "Open Roof",
-                            check1: snapshot.data["roof-1"],
-                            check2: snapshot.data["roof-2"])),
-                    const Spacer(),
-                    InkWell(
-                        onTap: () {
-                          updateWaterpump1();
-                          updateWaterpump2();
-                        },
-                        child: controlBtn(
-                            image: "assets/icon/water.svg",
-                            name: "Put Water",
-                            check2: snapshot.data["waterpump-1"],
-                            check1: snapshot.data["waterpump-2"])),
-                    const Spacer(),
-                  ],
-                )
-              ],
-            );
-          }
-          return const Center(child: CircularProgressIndicator());
-        });
+
+    return Column(
+      children: [
+        Row(
+          children: [
+            Text(
+              "Controls",
+              style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.w600,
+                  color: primary2Color),
+            ),
+            const Spacer(),
+            InkWell(
+              onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const ControlScreen())),
+              child: SvgPicture.asset("assets/icon/Back.svg"),
+            ),
+          ],
+        ),
+        const SizedBox(
+          height: 20,
+        ),
+        Row(
+          children: [
+            const Spacer(),
+            InkWell(
+                onTap: () {
+                  updateRoofs();
+                  setState(() {});
+                },
+                child: controlBtn(
+                    image: 'assets/icon/roofing.svg',
+                    name: "Open Roof",
+                    check1: widget.roof1,
+                    check2: widget.roof2)),
+            const Spacer(),
+            InkWell(
+                onTap: () {
+                  updatePumps();
+                  setState(() {});
+                },
+                child: controlBtn(
+                    image: "assets/icon/water.svg",
+                    name: "Put Water",
+                    check2: widget.waterpump1,
+                    check1: widget.waterpump2)),
+            const Spacer(),
+          ],
+        )
+      ],
+    );
   }
 }

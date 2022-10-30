@@ -45,10 +45,11 @@ dependencies:
   geolocator: ^9.0.1
   http: ^0.13.5
   intl: ^0.17.0
-  baseflow_plugin_template: ^2.1.1
   geocoding: ^2.0.5
   firebase_auth: ^3.10.0
   cloud_firestore: ^3.4.9
+  firebase_analytics: ^9.3.6
+  firebase_database: ^9.1.7
 
 dev_dependencies:
   flutter_test:

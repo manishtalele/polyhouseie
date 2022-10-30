@@ -6,9 +6,9 @@ class ControlDashBoard extends StatefulWidget {
   const ControlDashBoard(
       {super.key,
       required this.pump1,
-      required this.pump2,
       required this.roof1,
-      required this.roof2});
+      required this.roof2,
+      required this.pump2});
 
   @override
   State<ControlDashBoard> createState() => _ControlDashBoardState();
@@ -27,7 +27,7 @@ class _ControlDashBoardState extends State<ControlDashBoard> {
               width: width - 40,
               padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
               decoration: BoxDecoration(
-                  color: Colors.white, borderRadius: BorderRadius.circular(12)),
+                  color: Colors.white, borderRadius: BorderRadius.circular(16) , ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -99,7 +99,7 @@ class _ControlDashBoardState extends State<ControlDashBoard> {
                                 fontWeight: FontWeight.w500,
                                 fontSize: 20,
                                 color:
-                                    widget.pump2 ? primaryColor : Colors.red)),
+                                    widget.pump1 ? primaryColor : Colors.red)),
                       ],
                     ),
                   ),
